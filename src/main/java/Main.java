@@ -3,7 +3,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         System.out.println(WordCounter.getWordCount("src\\main\\resources\\exampleInput.txt"));
-
+        // hello world
         print("word.hello".replaceAll("([.|!|?|,])",""));
     }
 
