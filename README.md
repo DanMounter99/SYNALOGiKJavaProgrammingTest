@@ -12,6 +12,8 @@ Please note that this project uses Java 15. (Specifically OpenJDK 15.0.2)
 
 Output is produced by the static method getWordCount(filepath) of the class WordCounter. As such, you can obtain the desired output as a String by cloning this repository and calling WordCounter.getWordCount(file_path), as can be seen in the unit tests within the WordCounterTest class as well as the main() function of the Main class.
 
+If you wish to test quickly, I recommend altering the Main class since it has no function other than testing, and it has been left in for that purpose.
+
 The filepath can be local (starting by default in the root "SYNALOGiK Programming Test" folder) or absolute.
 
 ## Assumptions:
