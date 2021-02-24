@@ -1,1 +1,1 @@
-Testing?! For, punctuation handling.
+Testing?! For:, punctuation; handling.

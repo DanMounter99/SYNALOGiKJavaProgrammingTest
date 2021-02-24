@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class WordCounter {
-    private static final String PUNCTUATION_REGEX = "([.|!?,])";
+    private static final String PUNCTUATION_REGEX = "([.|!?,:;])";
 
     /**
-     * Reports information about the number of words within the given file.
+     * Reports information about the number of words within the given file, if one can be found. Return an error message otherwise.
      * @param filepath The location of the file in which words should be counted
      * @return A string output describing the word count, average word length, frequency of each word length and the length(s) for which the frequency is highest
      */
@@ -21,7 +21,7 @@ public class WordCounter {
             return "Error: this file could not be found.";
         }
         Scanner scanner = new Scanner(in);
-        // initialise HashMap to link word length to number of occurrences
+        // initialise a HashMap to link word length to number of occurrences
         HashMap<Integer, Integer> occurrenceMap = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -31,7 +31,7 @@ public class WordCounter {
             }
         }
 
-        // output
+        // start constructing the output text
         StringBuilder lengthCountParagraphBuilder = new StringBuilder();
         int wordCount = 0;
         int wordLengthsTotal = 0;
@@ -40,7 +40,7 @@ public class WordCounter {
         // iterate through every observed word length
         for (Integer wordLength : occurrenceMap.keySet()) {
             Integer occurrences = occurrenceMap.get(wordLength);
-            // build line
+            // build length count line
             String lengthCountLine = "Number of words of length " + wordLength.toString() + " is " + occurrences + "\n";
             lengthCountParagraphBuilder.append(lengthCountLine);
             // update wordCount and wordLengthsTotal
@@ -57,19 +57,16 @@ public class WordCounter {
                 highestFrequency = occurrences;
             }
         }
-        //word count
+        // word count
         String wordCountString = "Word count = " + wordCount + "\n";
-        //average word length
+        // average word length rounded to three decimal places
         double averageWordLength = (double) wordLengthsTotal / (double) wordCount;
-        //round to three decimal places
         averageWordLength = Math.round(averageWordLength*1000.0) / 1000.0;
         String averageWordLengthString = "Average word length = " + averageWordLength + "\n";
+        // highest frequency
         String highestFrequencyString = buildHighestFrequencyString(highestFrequency,lengthsWithHighestFrequency);
+
         return wordCountString + averageWordLengthString + lengthCountParagraphBuilder.toString() + highestFrequencyString;
-        //return "";
-
-
-
     }
 
     /**
